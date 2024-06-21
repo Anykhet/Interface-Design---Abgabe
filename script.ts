@@ -3,10 +3,10 @@ document.addEventListener('DOMContentLoaded', () => {
     //Audio Dateien in Variablen
     
     const sounds = {
-        'Space': '../sounds/sound-space.mp3',            
-        'ArrowUp': '../sounds/sound-up.mp3',
-        'ArrowRight': '../sounds/sound-right.mp3',
-        'ArrowLeft': '../sounds/sound-left.mp3'
+        'Space': '/sounds/sound-space.mp3',            
+        'ArrowUp': '/sounds/sound-up.mp3',
+        'ArrowRight': '/sounds/sound-right.mp3',
+        'ArrowLeft': '/sounds/sound-left.mp3'
     };
 
     //Visualizer Website 
@@ -25,6 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
             visualizer.classList.add('playing');
         }
     };
+    
     //Variabel fürs Stoppen wenn nichts berührt wird
     
     const stopSound = () => {
