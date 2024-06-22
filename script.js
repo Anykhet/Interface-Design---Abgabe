@@ -10,12 +10,23 @@ document.addEventListener('DOMContentLoaded', () => {
     let audio = null;
     let isPlaying = false;
 
+    
+    Object.keys(sounds).forEach(key => {
+        const audioElement = new Audio(sounds[key]);
+        audioElement.load(); 
+    });
+
     const playSound = (soundKey) => {
         if (!isPlaying) {
             audio = new Audio(sounds[soundKey]);
-            audio.play();
-            isPlaying = true;
-            visualizer.classList.add('playing');
+            audio.play()
+                .then(() => {
+                    isPlaying = true;
+                    visualizer.classList.add('playing');
+                })
+                .catch(error => {
+                    console.log('Error playing audio:', error);
+                });
         }
     };
 
