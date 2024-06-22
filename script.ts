@@ -1,3 +1,6 @@
+//TS anders, weil nur Änderungen bei JS gemacht wurden. 
+
+
 document.addEventListener('DOMContentLoaded', () => {
     const sounds = {
         'Space': '/sounds/sound-space.mp3',
