@@ -7,25 +7,34 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const visualizer = document.getElementById('visualizer');
-    let currentAudio = null;
+    let audio = null;
+    let isPlaying = false;
+
+    
+    Object.keys(sounds).forEach(key => {
+        const audioElement = new Audio(sounds[key]);
+        audioElement.load(); 
+    });
 
     const playSound = (soundKey) => {
-        if (currentAudio && !currentAudio.paused) {
-            currentAudio.pause();
-            currentAudio.currentTime = 0;
+        if (!isPlaying) {
+            audio = new Audio(sounds[soundKey]);
+            audio.play()
+                .then(() => {
+                    isPlaying = true;
+                    visualizer.classList.add('playing');
+                })
+                .catch(error => {
+                    console.log('Error playing audio:', error);
+                });
         }
-        currentAudio = new Audio(sounds[soundKey]);
-        currentAudio.play().then(() => {
-            visualizer.classList.add('playing');
-        }).catch(error => {
-            console.log('Error playing audio:', error);
-        });
     };
 
     const stopSound = () => {
-        if (currentAudio) {
-            currentAudio.pause();
-            currentAudio.currentTime = 0;
+        if (isPlaying && audio) {
+            audio.pause();
+            audio.currentTime = 0;
+            isPlaying = false;
             visualizer.classList.remove('playing');
         }
     };
