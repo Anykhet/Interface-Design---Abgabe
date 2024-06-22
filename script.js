@@ -6,27 +6,17 @@ document.addEventListener('DOMContentLoaded', () => {
         'ArrowLeft': 'https://anykhet.github.io/Interface-Design_Endabgabe/sounds/sound-left.mp3'
     };
 
+    
     const visualizer = document.getElementById('visualizer');
     let audio = null;
     let isPlaying = false;
 
-    
-    Object.keys(sounds).forEach(key => {
-        const audioElement = new Audio(sounds[key]);
-        audioElement.load(); 
-    });
-
     const playSound = (soundKey) => {
         if (!isPlaying) {
             audio = new Audio(sounds[soundKey]);
-            audio.play()
-                .then(() => {
-                    isPlaying = true;
-                    visualizer.classList.add('playing');
-                })
-                .catch(error => {
-                    console.log('Error playing audio:', error);
-                });
+            audio.play();
+            isPlaying = true;
+            visualizer.classList.add('playing');
         }
     };
 
